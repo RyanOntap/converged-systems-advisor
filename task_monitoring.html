@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html>         <!--<![endif]-->
+  <head>
+  <title>Monitoring your converged infrastructure | NetApp Cloud Docs</title>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation">
+  <meta http-equiv="nss-subtype" content="User Guide">
+
+  
+
+  <meta name="description" content="You can monitor your converged infrastructure by responding to alerts, reviewing a history of changes, and generating reports that provide a holistic view of...">
+  <meta name="keywords" content=" reports, alerts, history, support contract, contracts, rules, fail, warning, pass, notifications, email">
+
+  <!-- Icons -->
+  <link rel="icon" href="/converged-systems-advisor/images/favicon.ico" type="image/x-icon">
+
+  <!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- LUCI CSS Content -->
+  <link rel="stylesheet" href="/converged-systems-advisor/common/css/esb.min.css">
+  <link rel="stylesheet" href="/converged-systems-advisor/common/css/netapp-library.min.css">
+  <link rel="stylesheet" href="/converged-systems-advisor/common/css/doc.css">
+  <link rel="stylesheet" href="/converged-systems-advisor/common/css/doc-components.css">
+
+  <link rel="stylesheet" href='/converged-systems-advisor/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/converged-systems-advisor/css/na-search.css' type='text/css'>
+  <link rel='stylesheet' href='/converged-systems-advisor/css/clouddocs.css' type='text/css'>
+
+  <!-- Font awesome seems to affect our GitHub Icon and generic "arrow box" for external links. -->
+  <link rel="stylesheet" type="text/css" href="/converged-systems-advisor/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="/converged-systems-advisor/css/customstyles.css"> -->
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/converged-systems-advisor/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel='stylesheet' href='/converged-systems-advisor/css/netapp.css' type='text/css'>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+  
+    <script src='/converged-systems-advisor/js/na-search.js'></script>
+  
+
+  <script src='/converged-systems-advisor/js/clouddocs.js'></script>
+  <script src='/converged-systems-advisor/js/s_code_impl.js'></script>
+  <script src="/converged-systems-advisor/js/jquery.navgoco.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+  <script src="/converged-systems-advisor/js/toc.js"></script>
+  <script src="/converged-systems-advisor/js/customscripts.js"></script>
+
+  <script>
+      $(document).ready(function() {
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco({
+              caretHtml: '',
+              accordion: true,
+              openClass: 'active', // open
+              save: false, // leave false or nav highlighting doesn't work right
+              cookie: {
+                  name: 'navgoco',
+                  expires: false,
+                  path: '/'
+              },
+              slide: {
+                  duration: 400,
+                  easing: 'swing'
+              }
+          });
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+
+  <!-- Controls the i18n Browser Redirection -->
+  <script>
+    var siteLocales = [];
+    
+      siteLocales.push("zz");
+    
+      siteLocales.push("en");
+    
+      siteLocales.push("us-en");
+    
+
+    standardizeUrl(siteLocales, "clouddocs.netapp.com", "https://docs.netapp.com");
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-81697994-3"></script>
+  <script>
+  if (document.location.hostname === "docs.netapp.com") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-81697994-3');
+  }
+  </script>
+</head>
+
+
+  <body class="n-doc__component-detail">
+    <a href="#n-main-content" class="visually-hidden">Skip to main content</a>
+<div class="n-off-canvas-menu">
+  <div class="n-off-canvas-menu__menu">
+    <div class="n-off-canvas-menu__menu-inner">
+      <div class="n-off-canvas-menu__property-title">NetApp Cloud Docs</div>
+      <ul class="n-off-canvas-menu__property-navigation-list">
+        <li class="n-off-canvas-menu__property-navigation-list-item ">
+          <a href="https://docs.netapp.com/zz/" class="n-off-canvas-menu__property-navigation-link">
+            Home
+          </a>
+          <div class="n-off-canvas-menu__child-menu">
+            <ul class="n-menu__list">
+
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="n-off-canvas-menu__global-navigation-list">
+         <li class="n-off-canvas-menu__global-navigation-list-header">More From NetApp</li>
+         <li class="n-off-canvas-menu__global-navigation-list-item"><a href="#" class="n-off-canvas-menu__global-navigation-link">Netapp.com</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div class="n-off-canvas-menu__content-wrap">
+      <!-- Header -->
+      <header>
+  <!-- Top Hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+            <li class="n-top-hat__list-item">
+              <a href="http://www.netapp.com" class="n-top-hat__link">NetApp.com</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property Bar -->
+  <div class="n-property-bar n-property-bar--v3">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link"><span class="n-property-bar__menu-toggle-text">Menu</span><svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+          <title>bars</title>
+          <use xlink:href="/converged-systems-advisor/common/svg/sprite.svg#bars"></use>
+        </svg></a>
+      </div>
+      <div class="n-property-bar__property-mark n-property-bar__property-mark--has-property-name">
+        <a class="n-property-bar__property-link" href="https://docs.netapp.com/zz/">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/converged-systems-advisor/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg viewBox="0 0 1008 181.537" class="n-property-bar__logo-svg" aria-labelledby="title">
+              <title>NetApp</title>
+              <use xlink:href="/converged-systems-advisor/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+          <h2 class="n-property-bar__property-name">Cloud Docs</h2>
+        </a>
+      </div>
+
+      <!-- NetApp Search Bar -->
+      
+      <div id="search-demo-container" class="n-property-bar__search">
+        <div id="react-search"></div>
+      </div>
+      
+
+      <div id="ie-i18n-menu" class="n-property-bar__utils">
+        <ul class="n-property-navigation-bar__utils-list">
+          <li class="n-property-navigation-bar__utils-list-item">
+            <a href="#" class="n-property-navigation-bar__utils-link n-property-navigation-bar__nav-link n-property-navigation-bar__language-selector-toggle" data-menu-id="n-property-navigation-bar__menu--language-selector">
+              <svg class="n-icon-globe n-globe__icon" aria-labelledby="title">
+                <title>globe</title>
+                <use xlink:href="/converged-systems-advisor/common/svg/sprite.svg#globe"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- End NetApp Search Bar -->
+    </div>
+
+    <div class="n-property-bar__menus">
+      <div id="n-property-navigation-bar__menu--language-selector" class="n-menu n-menu--v3">
+        <div class="n-language-selector-menu">
+          <div class="n-language-selector-menu__header">
+            <span class="n-language-selector-menu__title">Select Your Language</span>
+          </div>
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list">
+                <li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="/converged-systems-advisor/us-en/" class="n-menu__header-text">English</a>
+                </li>
+                
+              </ul>
+            </li>
+          </ul>
+          <div class="menu__footer">
+            <p>Current Language: zz
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <!-- Content -->
+      <main role="main" id="n-main-content" class="n-main-content">
+        <div class="n-container">
+  <div class="n-row">
+    <div class="n-doc n-doc__component-list">
+      <!-- Sidebar Column -->
+      
+      <div class="col-md-3" >
+          
+
+<ul id="mysidebar" class="nav">
+  
+
+  
+    <li><a href="index.html">Converged Systems Advisor docs</a></li>
+  
+
+  
+    <!-- Check Container -->
+    <li class="subfolders">
+      <a href="#">Release notes</a>
+      <ul>
+        
+
+  
+    <li><a href="reference_new.html">What's new</a></li>
+  
+
+  
+    <li><a href="reference_issues.html">Known issues</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+    <!-- Check Container -->
+    <li class="subfolders">
+      <a href="#">Concepts</a>
+      <ul>
+        
+
+  
+    <li><a href="concept_overview.html">Overview</a></li>
+  
+
+  
+    <li><a href="concept_architecture.html">Architecture</a></li>
+  
+
+  
+    <li><a href="concept_licensing.html">Licensing</a></li>
+  
+
+  
+    <li><a href="concept_security.html">Security</a></li>
+  
+
+  
+    <li><a href="reference_user_roles.html">User roles</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+    <!-- Check Container -->
+    <li class="subfolders">
+      <a href="#">Getting started</a>
+      <ul>
+        
+
+  
+    <li><a href="task_getting_started_customers.html">Getting started for customers</a></li>
+  
+
+  
+    <li><a href="task_getting_started_partners.html">Getting started for partners</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+    <li class="active"><a href="task_monitoring.html">Monitoring your infrastructure</a></li>
+  
+
+  
+    <li><a href="task_troubleshooting.html">Troubleshooting</a></li>
+  
+
+  
+    <li><a href="reference_additional_info.html">Related links</a></li>
+  
+
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+      </div>
+      
+
+      <div class="n-doc__component-detail-content n-doc__component-detail-content--show-code">
+        <!-- Begin of page container -->
+        <article class="page-content">
+          
+
+<div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Monitoring your converged infrastructure
+    <span>
+      
+        <a target="_blank" href="https://github.com/NetAppDocs/converged-systems-advisor/blob/master/task_monitoring.adoc" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit on GitHub</a>
+        <a target="_blank" href="https://github.com/NetAppDocs/converged-systems-advisor/issues/new?body=Page%3A%20[Monitoring your converged infrastructure](https://docs.netapp.com/zz/converged-systems-advisor/task_monitoring.html)" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Request doc changes</a>
+      
+    </span>
+  </h1>
+</div>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>You can monitor your converged infrastructure by responding to alerts, reviewing a history of changes, and generating reports that provide a holistic view of an infrastructure.</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#reviewing-alerts-for-failed-rules-and-warnings">Reviewing alerts for failed rules and warnings</a></li>
+<li><a href="#reviewing-the-history-for-an-infrastructure">Reviewing the history for an infrastructure</a></li>
+<li><a href="#changing-the-notifications-that-you-receive">Changing the notifications that you receive</a></li>
+<li><a href="#generating-reports">Generating reports</a></li>
+<li><a href="#tracking-support-contracts">Tracking support contracts</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reviewing-alerts-for-failed-rules-and-warnings">Reviewing alerts for failed rules and warnings</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Converged Systems Advisor continuously monitors your infrastructure and generates warnings and failures to ensure that the system is configured and performing to best practices.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Log in to the <a href="https://csa.netapp.com/" target="_blank" rel="noopener">Converged Systems Advisor portal</a> and click <strong>Rules</strong>.</p>
+<div class="paragraph">
+<p>The Rules page displays a summary of all rules. The status for each rule is either <strong>Pass</strong>, <strong>Warning</strong>, or <strong>Fail</strong>.</p>
+</div>
+</li>
+<li>
+<p>Click the filter icon in the Status column and select <strong>Fail</strong>, <strong>Warning</strong>, or both.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_rules_filter.gif" alt="Shows the filter icon which enables you to filter the table so it shows only the rules that passed" width="failed" height="or include warnings."></span></p>
+</div>
+</li>
+<li>
+<p>Review details about individual rules by clicking the arrow next to the Status column.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_rules_information.gif" alt="Shows details about a rule" width="including the description" height="impact"></span></p>
+</div>
+</li>
+<li>
+<p>Follow the instructions in the resolution to fix the issue.</p>
+<div class="paragraph">
+<p>If needed, <a href="#reviewing-the-history-for-an-infrastructure">review the configuration history</a> for the infrastructure to help you resolve the issue.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">After you finish</div>
+<p>The status for the rules that you addressed should display as Pass after the agent&#8217;s next collection period.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reviewing-the-history-for-an-infrastructure">Reviewing the history for an infrastructure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you receive an alert about a failed rule, you can view a history of what changed in the configuration to help you resolve the issue.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Select a converged infrastructure.</p>
+</li>
+<li>
+<p>Click <strong>More &gt; History</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_history_navigation.gif" alt="Shows the More menu which includes the history option."></span></p>
+</div>
+</li>
+<li>
+<p>Click a day on the calendar to view the number of warnings and failures that were identified during each data collection.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The number that appears for each day corresponds to the number of times that the agent collected data. For example, if you keep the default collection interval of 24 hours, you should see one collection per day.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following image shows a single collection on the 27th of the month.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_history_status.gif" alt="Shows the number one and one yellow dot on the 27th of the month."></span></p>
+</div>
+</li>
+<li>
+<p>To view more details about the data that was collected, click <strong>Go to CI Dashboard</strong> for a collection.</p>
+</li>
+<li>
+<p>If needed, view the history for the last time that no warnings or failures were identified.</p>
+<div class="paragraph">
+<p>Comparing the data between the two collection periods can help you identify what changed.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="changing-the-notifications-that-you-receive">Changing the notifications that you receive</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you receive alert notifications that you do not plan to address, you can configure Converged Systems Advisor to stop sending email notifications for that rule. For example, enabling telnet is not recommended, but if you prefer to enable it, you can suppress the rule.</p>
+</div>
+<div class="paragraph">
+<div class="title">About this task</div>
+<p>You must have the Premium license to configure notifications.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Click <strong>Rules</strong>.</p>
+</li>
+<li>
+<p>Find the rules that you are looking for by filtering the contents of the table.</p>
+</li>
+<li>
+<p>Select one or more rows for rules that have a status of Warning or Fail and then click the <strong>Alerts</strong> icon.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_rules_suppress.gif" alt="Shows the alerts icon above the table which enables you to suppress rules."></span></p>
+</div>
+</li>
+<li>
+<p>Select a duration and then click <strong>Submit</strong>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you want to enable the alerts, follow these same steps and select <strong>End Suppression</strong>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Result</div>
+<p>Converged Systems Advisor no longer notifies you about the rule for the specified duration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generating-reports">Generating reports</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have a Premium license, you can generate several types of reports that provide details about the current status of your converged infrastructure: an inventory report, a health report, an assessment report, and more.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Click <strong>Reports</strong>.</p>
+</li>
+<li>
+<p>Select a report and click <strong>Generate</strong>.</p>
+</li>
+<li>
+<p>Choose your options for the report:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Select a converged infrastructure.</p>
+</li>
+<li>
+<p>Optionally change from the most recent data collection to a previous one.</p>
+</li>
+<li>
+<p>Choose how you want to view the report: in your browser, as a downloaded PDF, or via email.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_reports_generate.gif" alt="Shows the options for generating a report" width="which includes selecting a converged infrastructure and a snapshot" height="and then choosing how you want to view it."></span></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Result</div>
+<p>Converged Systems Advisor generates the report.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tracking-support-contracts">Tracking support contracts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can add details about support contracts for each device in a configuration: the start date, end date, and contract ID. This enables you to easily track the details in a central location so you know when to renew support contracts for each device.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Click <strong>Select a CI</strong> and select the converged infrastructure.</p>
+</li>
+<li>
+<p>In the Support Contract widget, click the <strong>Edit contract</strong> icon.</p>
+</li>
+<li>
+<p>Select the <strong>Start Date</strong> and <strong>End Date</strong> and enter the <strong>Contract ID</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Submit</strong>.</p>
+</li>
+<li>
+<p>Repeat the steps for each device in the configuration.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Result</div>
+<p>Converged Systems Advisor now displays the support contract details for each device. You can easily see which devices have active and expired support contracts.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_support_contracts.gif" alt="Shows four support contracts: one is expired and the other three are active."></span></p>
+</div>
+</div>
+</div>
+
+        </article>
+        <!-- Page Container -->
+      </div>
+    </div>
+  </div>
+</div>
+
+      </main>
+
+      <!-- Footer -->
+      
+      <footer class="n-footer n-footer--v1" style="border-top: solid 10px #DFDFDF;">
+        <div class="n-footer__bottom">
+          <div class="n-container">
+            <div class="n-footer__bottom-left">
+              <div class="n-footer__copyright">
+                  <a href="//www.netapp.com/us/legal/copyright.aspx" class="n-footer__copyright-link">© 1994-2018 NetApp, Inc. All rights reserved.</a>
+              </div>
+              <div class="n-footer__copyright">
+                <a href="//www.netapp.com/us/legal/netapptmlist.aspx" class="n-footer__copyright-link">Trademarks</a>
+              </div>
+              <div class="n-footer__social-links">
+                <ul class="n-footer__social-link-list">
+                  <li class="n-footer__social-link-list-item">
+                    <a class="n-footer__social-link" data-ntap-social="follow-blog" href="http://blog.netapp.com" target="_blank" title="blog" alt="blog">
+                      <span class="n-footer__social-link-text">blog</span>
+                      <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                        <title>blog@</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/converged-systems-advisor/common/svg/sprite.svg#blog"></use>
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="n-footer__social-link-list-item">
+                    <a class="n-footer__social-link" data-ntap-social="follow-community" href="http://community.netapp.com/" target="_blank" title="community" alt="community">
+                      <span class="n-footer__social-link-text">community</span>
+                      <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                        <title>community@</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/converged-systems-advisor/common/svg/sprite.svg#comments"></use>
+                      </svg>
+                    </a>
+                  </li>
+
+                  <li class="n-footer__social-link-list-item">
+                    <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netappdoc" target="_blank" title="twitter" alt="twitter">
+                      <span class="n-footer__social-link-text">twitter</span>
+                      <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                        <title>twitter@</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/converged-systems-advisor/common/svg/sprite.svg#twitter"></use>
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="n-footer__social-link-list-item">
+                    <a class="n-footer__social-link" data-ntap-social="follow-youtube" href="https://www.youtube.com/user/NetAppTechCommTV/" target="_blank" title="youtube" alt="youtube">
+                      <span class="n-footer__social-link-text">youtube</span>
+                      <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                        <title>youtube@</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/converged-systems-advisor/common/svg/sprite.svg#youtube"></use>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="n-footer__bottom-right">
+                <p class="n-footer__fine-print">
+                    Have feedback for our website?
+                    <a target="_self" href="javascript:netapp_mailto()">Let us know</a>
+                </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <script src="/converged-systems-advisor/common/js/components.js"></script>
+    <script src="/converged-systems-advisor/common/js/doc-components.js"></script>
+
+    <!-- i18n script -->
+    <script type="text/javascript" src="/converged-systems-advisor/js/responsive.js"></script>
+
+    <!-- Elasticsearch JS -->
+    
+    <script type="text/javascript" src='/converged-systems-advisor/js/bundle.js'></script>
+    
+  </body>
+
+  
+</html>

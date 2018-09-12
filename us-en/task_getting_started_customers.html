@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html>         <!--<![endif]-->
+  <head>
+  <title>Getting started with Converged Systems Advisor for customers | NetApp Cloud Docs</title>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation">
+  <meta http-equiv="nss-subtype" content="User Guide">
+
+  
+
+  <meta name="description" content="To get started with Converged Systems Advisor, you must prepare your environment, install and set up the agent, and add the converged infrastructure to the p...">
+  <meta name="keywords" content=" agent, deploy, install, set up, VMware, ESXi, read-only, accounts, NSS, account, log in, login, UCS, Nexus, ONTAP, download, add device, add infrastructure, share, sharing, notifications, alerts, emails, support, contract">
+
+  <!-- Icons -->
+  <link rel="icon" href="/converged-systems-advisor/us-en/images/favicon.ico" type="image/x-icon">
+
+  <!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- LUCI CSS Content -->
+  <link rel="stylesheet" href="/converged-systems-advisor/us-en/common/css/esb.min.css">
+  <link rel="stylesheet" href="/converged-systems-advisor/us-en/common/css/netapp-library.min.css">
+  <link rel="stylesheet" href="/converged-systems-advisor/us-en/common/css/doc.css">
+  <link rel="stylesheet" href="/converged-systems-advisor/us-en/common/css/doc-components.css">
+
+  <link rel="stylesheet" href='/converged-systems-advisor/us-en/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/converged-systems-advisor/us-en/css/na-search.css' type='text/css'>
+  <link rel='stylesheet' href='/converged-systems-advisor/us-en/css/clouddocs.css' type='text/css'>
+
+  <!-- Font awesome seems to affect our GitHub Icon and generic "arrow box" for external links. -->
+  <link rel="stylesheet" type="text/css" href="/converged-systems-advisor/us-en/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="/converged-systems-advisor/us-en/css/customstyles.css"> -->
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/converged-systems-advisor/us-en/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel='stylesheet' href='/converged-systems-advisor/us-en/css/netapp.css' type='text/css'>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+  
+    <script src='/converged-systems-advisor/us-en/js/na-search.js'></script>
+  
+
+  <script src='/converged-systems-advisor/us-en/js/clouddocs.js'></script>
+  <script src='/converged-systems-advisor/us-en/js/s_code_impl.js'></script>
+  <script src="/converged-systems-advisor/us-en/js/jquery.navgoco.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+  <script src="/converged-systems-advisor/us-en/js/toc.js"></script>
+  <script src="/converged-systems-advisor/us-en/js/customscripts.js"></script>
+
+  <script>
+      $(document).ready(function() {
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco({
+              caretHtml: '',
+              accordion: true,
+              openClass: 'active', // open
+              save: false, // leave false or nav highlighting doesn't work right
+              cookie: {
+                  name: 'navgoco',
+                  expires: false,
+                  path: '/'
+              },
+              slide: {
+                  duration: 400,
+                  easing: 'swing'
+              }
+          });
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      })
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+
+  <!-- Controls the i18n Browser Redirection -->
+  <script>
+    var siteLocales = [];
+    
+      siteLocales.push("zz");
+    
+      siteLocales.push("en");
+    
+      siteLocales.push("us-en");
+    
+
+    standardizeUrl(siteLocales, "clouddocs.netapp.com", "https://docs.netapp.com");
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-81697994-3"></script>
+  <script>
+  if (document.location.hostname === "docs.netapp.com") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-81697994-3');
+  }
+  </script>
+</head>
+
+
+  <body class="n-doc__component-detail">
+    <a href="#n-main-content" class="visually-hidden">Skip to main content</a>
+<div class="n-off-canvas-menu">
+  <div class="n-off-canvas-menu__menu">
+    <div class="n-off-canvas-menu__menu-inner">
+      <div class="n-off-canvas-menu__property-title">NetApp Cloud Docs</div>
+      <ul class="n-off-canvas-menu__property-navigation-list">
+        <li class="n-off-canvas-menu__property-navigation-list-item ">
+          <a href="https://docs.netapp.com/us-en/" class="n-off-canvas-menu__property-navigation-link">
+            Home
+          </a>
+          <div class="n-off-canvas-menu__child-menu">
+            <ul class="n-menu__list">
+
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="n-off-canvas-menu__global-navigation-list">
+         <li class="n-off-canvas-menu__global-navigation-list-header">More From NetApp</li>
+         <li class="n-off-canvas-menu__global-navigation-list-item"><a href="#" class="n-off-canvas-menu__global-navigation-link">Netapp.com</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div class="n-off-canvas-menu__content-wrap">
+      <!-- Header -->
+      <header>
+  <!-- Top Hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+            <li class="n-top-hat__list-item">
+              <a href="http://www.netapp.com" class="n-top-hat__link">NetApp.com</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property Bar -->
+  <div class="n-property-bar n-property-bar--v3">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link"><span class="n-property-bar__menu-toggle-text">Menu</span><svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+          <title>bars</title>
+          <use xlink:href="/converged-systems-advisor/us-en/common/svg/sprite.svg#bars"></use>
+        </svg></a>
+      </div>
+      <div class="n-property-bar__property-mark n-property-bar__property-mark--has-property-name">
+        <a class="n-property-bar__property-link" href="https://docs.netapp.com/us-en/">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/converged-systems-advisor/us-en/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg viewBox="0 0 1008 181.537" class="n-property-bar__logo-svg" aria-labelledby="title">
+              <title>NetApp</title>
+              <use xlink:href="/converged-systems-advisor/us-en/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+          <h2 class="n-property-bar__property-name">Cloud Docs</h2>
+        </a>
+      </div>
+
+      <!-- NetApp Search Bar -->
+      
+      <div id="search-demo-container" class="n-property-bar__search">
+        <div id="react-search"></div>
+      </div>
+      
+
+      <div id="ie-i18n-menu" class="n-property-bar__utils">
+        <ul class="n-property-navigation-bar__utils-list">
+          <li class="n-property-navigation-bar__utils-list-item">
+            <a href="#" class="n-property-navigation-bar__utils-link n-property-navigation-bar__nav-link n-property-navigation-bar__language-selector-toggle" data-menu-id="n-property-navigation-bar__menu--language-selector">
+              <svg class="n-icon-globe n-globe__icon" aria-labelledby="title">
+                <title>globe</title>
+                <use xlink:href="/converged-systems-advisor/us-en/common/svg/sprite.svg#globe"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- End NetApp Search Bar -->
+    </div>
+
+    <div class="n-property-bar__menus">
+      <div id="n-property-navigation-bar__menu--language-selector" class="n-menu n-menu--v3">
+        <div class="n-language-selector-menu">
+          <div class="n-language-selector-menu__header">
+            <span class="n-language-selector-menu__title">Select Your Language</span>
+          </div>
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list">
+                <li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="/converged-systems-advisor/us-en/" class="n-menu__header-text">English</a>
+                </li>
+                
+              </ul>
+            </li>
+          </ul>
+          <div class="menu__footer">
+            <p>Current Language: us-en
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <!-- Content -->
+      <main role="main" id="n-main-content" class="n-main-content">
+        <div class="n-container">
+  <div class="n-row">
+    <div class="n-doc n-doc__component-list">
+      <!-- Sidebar Column -->
+      
+      <div class="col-md-3" >
+          
+
+<ul id="mysidebar" class="nav">
+  
+
+  
+    <li><a href="index.html">Converged Systems Advisor docs</a></li>
+  
+
+  
+    <!-- Check Container -->
+    <li class="subfolders">
+      <a href="#">Release notes</a>
+      <ul>
+        
+
+  
+    <li><a href="reference_new.html">What's new</a></li>
+  
+
+  
+    <li><a href="reference_issues.html">Known issues</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+    <!-- Check Container -->
+    <li class="subfolders">
+      <a href="#">Concepts</a>
+      <ul>
+        
+
+  
+    <li><a href="concept_overview.html">Overview</a></li>
+  
+
+  
+    <li><a href="concept_architecture.html">Architecture</a></li>
+  
+
+  
+    <li><a href="concept_licensing.html">Licensing</a></li>
+  
+
+  
+    <li><a href="concept_security.html">Security</a></li>
+  
+
+  
+    <li><a href="reference_user_roles.html">User roles</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+    <!-- Check Container -->
+    <li class="subfolders">
+      <a href="#">Getting started</a>
+      <ul>
+        
+
+  
+    <li class="active"><a href="task_getting_started_customers.html">Getting started for customers</a></li>
+  
+
+  
+    <li><a href="task_getting_started_partners.html">Getting started for partners</a></li>
+  
+
+
+      </ul>
+    </li>
+  
+
+  
+    <li><a href="task_monitoring.html">Monitoring your infrastructure</a></li>
+  
+
+  
+    <li><a href="task_troubleshooting.html">Troubleshooting</a></li>
+  
+
+  
+    <li><a href="reference_additional_info.html">Related links</a></li>
+  
+
+
+</ul>
+
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+      </div>
+      
+
+      <div class="n-doc__component-detail-content n-doc__component-detail-content--show-code">
+        <!-- Begin of page container -->
+        <article class="page-content">
+          
+
+<div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Getting started with Converged Systems Advisor for customers
+    <span>
+      
+        <a target="_blank" href="https://github.com/NetAppDocs/converged-systems-advisor/blob/master/task_getting_started_customers.adoc" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Edit on GitHub</a>
+        <a target="_blank" href="https://github.com/NetAppDocs/converged-systems-advisor/issues/new?body=Page%3A%20[Getting started with Converged Systems Advisor for customers](https://docs.netapp.com/us-en/converged-systems-advisor/task_getting_started_customers.html)" class="btn btn-default githubEditButton" role="button"><i class="fa fa-github fa-lg"></i> Request doc changes</a>
+      
+    </span>
+  </h1>
+</div>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>To get started with Converged Systems Advisor, you must prepare your environment, install and set up the agent, and add a converged infrastructure to the portal.</p>
+</div>
+<div class="paragraph">
+<p>You might want to <a href="concept_architecture.html">learn how Converged Systems Advisor works</a> before you get started.</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#preparing-your-environment">Preparing your environment</a></li>
+<li><a href="#deploying-the-agent">Deploying the agent</a></li>
+<li><a href="#adding-an-infrastructure-to-the-portal">Adding an infrastructure to the portal</a></li>
+<li><a href="#sharing-an-infrastructure-with-other-users">Sharing an infrastructure with other users</a></li>
+<li><a href="#configuring-notifications">Configuring notifications</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="preparing-your-environment">Preparing your environment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Preparing your environment includes verifying support for your configuration, creating accounts for the agent, and registering for a NetApp Support Site account.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Verify support in the <a href="http://mysupport.netapp.com/matrix" target="_blank" rel="noopener">NetApp Interoperability Matrix Tool</a>:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Verify that Converged Systems Advisor supports your FlexPod converged infrastructure.</p>
+</li>
+<li>
+<p>Verify that you have a supported VMware ESXi server for the Converged Systems Advisor agent.</p>
+<div class="paragraph">
+<p>To minimize bandwidth usage, NetApp recommends installing the agent in the same data center as the FlexPod converged infrastructure.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Ensure that the network in which you install the agent allows connectivity to the required endpoints:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The agent must have connectivity to each FlexPod component so it can collect configuration data.</p>
+</li>
+<li>
+<p>The agent also requires an outbound internet connection to communicate with the Converged Systems Advisor portal (csa.netapp.com).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="#creating-accounts-on-flexpod-devices">Create accounts on each FlexPod component</a>.</p>
+<div class="paragraph">
+<p>The agent requires credentials to collect configuration data. You must provide the credentials when you configure the agent.</p>
+</div>
+</li>
+<li>
+<p>Go to the <a href="https://mysupport.netapp.com" target="_blank" rel="noopener">NetApp Support Site</a> and register for an account, if you do not have one.</p>
+<div class="paragraph">
+<p>A NetApp Support Site account is required to configure the agent and to access the portal.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="creating-accounts-on-flexpod-devices">Creating accounts on FlexPod devices</h3>
+<div class="paragraph">
+<p>You must set up a read-only account in Cisco UCS Manager and on your Cisco Nexus switches. An admin account is required for ONTAP systems. The agent uses these accounts to collect configuration data from each device.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Create a read-only account for Cisco UCS Manager:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log in to Cisco UCS Manager.</p>
+</li>
+<li>
+<p>Create a locally authenticated user named <em>csa-readonly</em>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+All new users are read-only by default.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create a read-only account for your Nexus switches:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log in to each Nexus switch using SSH or telnet.</p>
+</li>
+<li>
+<p>Enter global configuration mode:</p>
+<div class="literalblock">
+<div class="content">
+<pre>configure terminal</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a new user:</p>
+<div class="literalblock">
+<div class="content">
+<pre>username [name] password [password] role [role]</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save the configuration:</p>
+<div class="literalblock">
+<div class="content">
+<pre>copy running configuration startup configuration</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create an admin account for ONTAP:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log in to OnCommand System Manager and click the settings icon:</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_system_manager_settings.gif" alt="The settings icon in System Manager."></span>.</p>
+</div>
+</li>
+<li>
+<p>On the Users page, click <strong>Add</strong>.</p>
+</li>
+<li>
+<p>Enter a user name and password and add <strong>ssh</strong> and <strong>ontapi</strong> as user login methods with admin access.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_system_manager_add_user.gif" alt="Shows the Add User screen in System Manager" width="in which a new ONTAP user has ssh and ontapi permissions."></span></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploying-the-agent">Deploying the agent</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You must deploy the Converged Systems Advisor agent on a VMware ESXi server. The agent collects configuration data about each device in your FlexPod converged infrastructure and sends that data to the Converged Systems Advisor portal.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p><a href="#downloading-and-installing-the-agent">Download and install the agent</a></p>
+</li>
+<li>
+<p><a href="#setting-up-networking-for-the-agent">Set up networking for the agent</a></p>
+</li>
+<li>
+<p><a href="#installing-an-ssl-certificate-on-the-agent">If needed, install an SSL certificate on the agent</a></p>
+</li>
+<li>
+<p><a href="#configuring-the-agent-to-discover-your-flexpod-infrastructure">Configure the agent to discover your FlexPod infrastructure</a></p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="downloading-and-installing-the-agent">Downloading and installing the agent</h3>
+<div class="paragraph">
+<p>You must deploy the Converged Systems Advisor agent on a VMware ESXi server.</p>
+</div>
+<div class="paragraph">
+<div class="title">About this task</div>
+<p>To minimize bandwidth usage, you should install the agent on a VMware ESXi server that is in the same data center as the FlexPod configuration. The agent must have connectivity to each FlexPod component and to the internet so it can send configuration data to the Converged Systems Advisor portal using HTTPS port 443.</p>
+</div>
+<div class="paragraph">
+<p>The agent is deployed as a VMware vSphere virtual machine from an Open Virtualization Format (OVF) template. The template is Debian-based with 1 vCPU and 2 GB of RAM (more may be needed for multiple or larger FlexPod systems).</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Download the agent:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Log in to the <a href="https://csa.netapp.com/" target="_blank" rel="noopener">Converged Systems Advisor portal</a>.</p>
+</li>
+<li>
+<p>Click <strong>Download Agent</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Install the agent by deploying the OVF template on the VMware ESXi server.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-up-networking-for-the-agent">Setting up networking for the agent</h3>
+<div class="paragraph">
+<p>You must ensure that networking is set up correctly on the agent virtual machine to enable communication between the agent and FlexPod devices and between the agent and csa.netapp.com.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Log in to the agent&#8217;s virtual machine console.</p>
+<div class="paragraph">
+<p>The default user name is <code>csa</code> and the default password is <code>netapp</code>. You should change the default password after you log in.</p>
+</div>
+</li>
+<li>
+<p>If DHCP is not available in the subnet, configure a static IP address and DNS settings using standard Debian tools, and then reboot the agent.</p>
+<div class="paragraph">
+<p>The network configuration for the Debian virtual machine defaults to DHCP. NetworkManager is installed and provides a text user interface that you can start from the command nmtui (see the <a href="https://manpages.debian.org/stretch/network-manager/nmtui.1.en.html" target="_blank" rel="noopener">man page</a> for more details.)</p>
+</div>
+<div class="paragraph">
+<p>For help with networking, see <a href="https://wiki.debian.org/NetworkConfiguration" target="_blank" rel="noopener">the network configuration page on the Debian wiki</a>.</p>
+</div>
+</li>
+<li>
+<p>If your security policies dictate that the agent must be on one network to communicate with FlexPod devices and another network to communicate with the internet, add a second network interface in VCenter and configure the correct VLANs and IP addresses.</p>
+</li>
+<li>
+<p>If a proxy server is required for internet access, configure the virtual machine to use the proxy by setting the http_proxy environment variable.</p>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="paragraph">
+<p>The following steps configure the virtual machine to use an HTTP proxy running on 192.168.10.10 and port 3128.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add <code>/etc/profile.d/proxy.sh</code> with the following contents:</p>
+<div class="literalblock">
+<div class="content">
+<pre>export http_proxy=http://192.168.10.10:3128</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add <code>/etc/apt/apt.conf.d/99HttpProxy</code> with the following contents:</p>
+<div class="literalblock">
+<div class="content">
+<pre>Acquire::http::Proxy "http://192.168.10.10:3128";</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Edit <code>/etc/wgetrc</code> by adding the following:</p>
+<div class="literalblock">
+<div class="content">
+<pre>http_proxy = http://192.168.10.10:3128</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verify connectivity by running the following CLI command from the agent:</p>
+<div class="literalblock">
+<div class="content">
+<pre>curl -k https://www.netapp.com/us/index.aspx</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the command fails, verify DNS settings. The agent virtual machine must have a valid DNS configuration and the ability to reach csa.netapp.com.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installing-an-ssl-certificate-on-the-agent">Installing an SSL certificate on the agent</h3>
+<div class="paragraph">
+<p>The agent creates a self-signed certificate when the virtual machine boots for the first time. If required, you can delete that certificate and use your own SSL certificate.</p>
+</div>
+<div class="paragraph">
+<div class="title">About this task</div>
+<p>Converged Systems Advisor supports the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Any cipher compatible with OpenSSL version 1.0.1 or greater</p>
+</li>
+<li>
+<p>TLS 1.1 and TLS 1.2</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Log in to the agent&#8217;s virtual machine console.</p>
+</li>
+<li>
+<p>Navigate to <code>/opt/csa/cert</code></p>
+</li>
+<li>
+<p>Delete the self-signed certificate that the agent created.</p>
+</li>
+<li>
+<p>Paste your SSL certificate.</p>
+</li>
+<li>
+<p>Restart the virtual machine.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-the-agent-to-discover-your-flexpod-infrastructure">Configuring the agent to discover your FlexPod infrastructure</h3>
+<div class="paragraph">
+<p>You must configure the agent to collect configuration data from each device in your FlexPod converged infrastructure.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>Open a web browser and enter the IP address of the agent virtual machine.</p>
+</li>
+<li>
+<p>Log in to the agent by entering the user name and password of your NetApp Support Site account.</p>
+</li>
+<li>
+<p>Add the FlexPod devices that you want the agent to discover:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click <strong>Add a device</strong>.</p>
+</li>
+<li>
+<p>Select a device type.</p>
+</li>
+<li>
+<p>Enter the IP address or host name of the device.</p>
+</li>
+<li>
+<p>Enter the user name and password of the account that you previously created for this device.</p>
+</li>
+<li>
+<p>Click <strong>Add device</strong>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The Status column identifies how far along the agent is in the discovery process. The column displays a checkmark when discovery is complete.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Repeat the steps for all other devices in the FlexPod converged infrastructure.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Result</div>
+<p>Each device in the FlexPod infrastructure should display in the table with a checkmark.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_agent_configuration.gif" alt="Shows each required device with a green checkmark in the Status column."></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="adding-an-infrastructure-to-the-portal">Adding an infrastructure to the portal</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After you configure the agent, it sends information about each FlexPod device to the Converged Systems Advisor portal. You must now select each of those components in the portal to create an entire infrastructure that you can monitor.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>In the <a href="https://csa.netapp.com/" target="_blank" rel="noopener">Converged Systems Advisor portal</a>, click <strong>Add Infrastructure</strong>.</p>
+</li>
+<li>
+<p>Add basic details about the infrastructure: a name, your company name, and the location of the system.</p>
+</li>
+<li>
+<p>In the Available Devices table, select each device that is part of the FlexPod configuration.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+When you select a device, the Eligibility column displays either <strong>Eligible</strong> or <strong>Not Eligible</strong>. A device is not eligible if it was discovered by a different agent.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once you have selected the required components, you should see a green checkmark next to each type of device.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_add_infrastructure.gif" alt="Shows four devices selected in the table and green checkmarks for each" width="which indicates that you have selected all of the required components."></span></p>
+</div>
+</li>
+<li>
+<p>Click <strong>Add System</strong> and then click <strong>OK</strong> in the confirmation dialog box.</p>
+</li>
+<li>
+<p>When prompted, add your <a href="concept_licensing.html">Converged Systems Advisor license</a> to unlock key functionality:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enter the license key.</p>
+</li>
+<li>
+<p>Review and accept the terms of the End User License Agreement.</p>
+</li>
+<li>
+<p>Click <strong>Submit</strong>.</p>
+<div class="paragraph">
+<p>The Status column should now display that the license for the converged infrastructure is active.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_license_active.gif" alt="Shows an active license in the Licensing table."></span></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Result</div>
+<p>Converged Systems Advisor adds the infrastructure to the portal and starts collecting configuration data about each device. Wait a few minutes for the agent to collect information from the devices.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sharing-an-infrastructure-with-other-users">Sharing an infrastructure with other users</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sharing a converged infrastructure enables another person to log in to the Converged Systems Advisor portal so they can view and monitor the configuration. The person who you share the infrastructure with must have a <a href="https://mysupport.netapp.com" target="_blank" rel="noopener">NetApp Support Site</a> account.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>In the Converged Systems Advisor portal, click the <strong>Settings icon</strong>, and then click <strong>Users</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_settings.gif" alt="Shows the settings menu" width="which contains a link to the Users page."></span></p>
+</div>
+</li>
+<li>
+<p>Select the configuration from the User table.</p>
+</li>
+<li>
+<p>Click the <span class="image"><img src="./media/screenshot_share_icon.gif" alt="The icon for sharing an infrastructure."></span> icon.</p>
+</li>
+<li>
+<p>Enter one or more email addresses next to the user role that you want to provide.</p>
+<div class="paragraph">
+<p><a href="reference_user_roles.html">View the differences between each role</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can enter multiple email addresses in a single field by pressing <strong>Enter</strong> after the first email address.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <strong>Send</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Result</div>
+<p>The user should receive an email that contains instructions for accessing Converged Systems Advisor.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuring-notifications">Configuring notifications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have a Premium license, Converged Systems Advisor can alert you about changes to your FlexPod infrastructure through email notifications.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Steps</div>
+<ol class="arabic">
+<li>
+<p>In the Converged Systems Advisor portal, click the <strong>Settings icon</strong>, and then click <strong>Alert Settings</strong>.</p>
+</li>
+<li>
+<p>Check the notification that you would like to receive for each converged infrastructure that has a Premium license.</p>
+<div class="paragraph">
+<p>Each notification includes the following information:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Collection Failures
+</td>
+<td class="hdlist2">
+<p>Alerts you when Converged Systems Advisor cannot collect data from a converged infrastructure.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Offline Agent
+</td>
+<td class="hdlist2">
+<p>Alerts you when a Converged Systems Advisor agent is not online.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Daily Alert Digest
+</td>
+<td class="hdlist2">
+<p>Alerts you about failed rules that occurred on the previous day.</p>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Result</div>
+<p>Converged Systems Advisor will now send email notifications to the users associated with the converged infrastructure.</p>
+</div>
+</div>
+</div>
+
+        </article>
+        <!-- Page Container -->
+      </div>
+    </div>
+  </div>
+</div>
+
+      </main>
+
+      <!-- Footer -->
+      
+      <footer class="n-footer n-footer--v1" style="border-top: solid 10px #DFDFDF;">
+        <div class="n-footer__bottom">
+          <div class="n-container">
+            <div class="n-footer__bottom-left">
+              <div class="n-footer__copyright">
+                  <a href="//www.netapp.com/us/legal/copyright.aspx" class="n-footer__copyright-link">© 1994-2018 NetApp, Inc. All rights reserved.</a>
+              </div>
+              <div class="n-footer__copyright">
+                <a href="//www.netapp.com/us/legal/netapptmlist.aspx" class="n-footer__copyright-link">Trademarks</a>
+              </div>
+              <div class="n-footer__social-links">
+                <ul class="n-footer__social-link-list">
+                  <li class="n-footer__social-link-list-item">
+                    <a class="n-footer__social-link" data-ntap-social="follow-blog" href="http://blog.netapp.com" target="_blank" title="blog" alt="blog">
+                      <span class="n-footer__social-link-text">blog</span>
+                      <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                        <title>blog@</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/converged-systems-advisor/us-en/common/svg/sprite.svg#blog"></use>
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="n-footer__social-link-list-item">
+                    <a class="n-footer__social-link" data-ntap-social="follow-community" href="http://community.netapp.com/" target="_blank" title="community" alt="community">
+                      <span class="n-footer__social-link-text">community</span>
+                      <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                        <title>community@</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/converged-systems-advisor/us-en/common/svg/sprite.svg#comments"></use>
+                      </svg>
+                    </a>
+                  </li>
+
+                  <li class="n-footer__social-link-list-item">
+                    <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netappdoc" target="_blank" title="twitter" alt="twitter">
+                      <span class="n-footer__social-link-text">twitter</span>
+                      <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                        <title>twitter@</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/converged-systems-advisor/us-en/common/svg/sprite.svg#twitter"></use>
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="n-footer__social-link-list-item">
+                    <a class="n-footer__social-link" data-ntap-social="follow-youtube" href="https://www.youtube.com/user/NetAppTechCommTV/" target="_blank" title="youtube" alt="youtube">
+                      <span class="n-footer__social-link-text">youtube</span>
+                      <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                        <title>youtube@</title>
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/converged-systems-advisor/us-en/common/svg/sprite.svg#youtube"></use>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="n-footer__bottom-right">
+                <p class="n-footer__fine-print">
+                    Have feedback for our website?
+                    <a target="_self" href="javascript:netapp_mailto()">Let us know</a>
+                </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <script src="/converged-systems-advisor/us-en/common/js/components.js"></script>
+    <script src="/converged-systems-advisor/us-en/common/js/doc-components.js"></script>
+
+    <!-- i18n script -->
+    <script type="text/javascript" src="/converged-systems-advisor/us-en/js/responsive.js"></script>
+
+    <!-- Elasticsearch JS -->
+    
+    <script type="text/javascript" src='/converged-systems-advisor/us-en/js/bundle.js'></script>
+    
+  </body>
+
+  
+</html>
