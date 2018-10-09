@@ -44,6 +44,8 @@
   <!-- NetApp CSS controls the technical content -->
   <link rel='stylesheet' href='/converged-systems-advisor/us-en/css/netapp.css' type='text/css'>
 
+  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <!-- Used to import Promise for IE. Required for SearchKit -->
@@ -747,6 +749,9 @@ All new users are read-only by default.
 </li>
 <li>
 <p>Enter the user name and password of the account that you previously created for this device.</p>
+<div class="paragraph">
+<p>If your UCS environment has LDAP user management configured, then you must add the user’s domain before the user name. For example: local\csa-readonly</p>
+</div>
 </li>
 <li>
 <p>Click <strong>Add device</strong>.</p>
