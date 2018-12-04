@@ -1,4 +1,5 @@
-function netapp_mailto() {
+function netapp_mailto(subjectType) {
+	subjectType = subjectType || "";
 	var pageurl = "" + window.location;
 
   if(pageurl.indexOf('?') > -1) {
@@ -6,7 +7,7 @@ function netapp_mailto() {
   }
 
   var email = "doccomments@netapp.com";
-  var loc = email + "?subject=clouddocs_feedback:%20" + pageurl;
+  var loc = email + "?subject=saasdocs_feedback:%20" + pageurl;
   window.location = "mailto:" + loc;
 }
 
